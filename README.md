@@ -40,6 +40,8 @@ mv composer.phar /usr/local/bin/composer
 
 Для установки composer'а на других системах следуйте инструкциям на сайте [getcomposer.org](https://getcomposer.org/download/)
 
+### Установка файлов проекта
+
 Скачиваем с github код проекта
 
 ~~~
