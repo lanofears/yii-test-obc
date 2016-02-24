@@ -1,0 +1,160 @@
+
+/** Основные стили сайта (шли вместе с начальным макетом сайта) **/
+
+html,
+body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.bottom-column {
+    float: none;
+    display: table-cell;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+.site-error .error-footer {
+    padding-top: 20px;
+}
+
+/** Стили для блока с описанием компании на главной странице **/
+
+.jumbotron {
+    padding-top: 80px;
+    margin: 0 !important;
+    background-color: #213340;
+    color: #fafafa;
+}
+
+.jumbotron .brand-info {
+    padding: 0 15%;
+}
+
+/** Стили для новостей **/
+
+.news-item {
+    padding: 5px 0;
+}
+
+.news-item .news-category, .news-info .news-category {
+    margin-left: 20px;
+}
+
+.news-text {
+    margin-top: 30px;
+}
+
+.news-text p {
+    padding: 10px 0;
+}
+
+.news-item .title, .news-title, .category-name {
+    font-weight: bolder;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+/** Стили для форм используемых на сайте **/
+
+.site-form label {
+    font-size: 120%;
+}
+
+/** Стили для комментариев к новости **/
+
+.post-block {
+    margin-bottom: 20px;
+}
+
+.post-item {
+    padding: 10px 0;
+}
+
+.post-item .post-text {
+    font-size: 100%;
+}
+
+/** Стили для основного меню сайта **/
+
+.dropdown-menu > li > a > span {
+    padding-right: 8px;
+}
