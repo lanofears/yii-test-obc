@@ -64,7 +64,7 @@ CREATE USER webserver WITH password 'test';
 GRANT ALL privileges ON DATABASE websrv TO webserver;
 
 \connect websrv;
-CREATE SCHEMA site;
+CREATE SCHEMA site AUTHORIZATION webserver;
 ```
 
 ### Создание структуры БД и тестового наполнения
