@@ -29,7 +29,11 @@ $this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs(
 <div class="lead news-text">
     <?= TextHelper::format_article(Html::encode($news_entry->text)) ?>
 </div>
-<?php Pjax::begin(); ?>
+<?php
+Pjax::begin([
+    'timeout' => 50000,
+]);
+?>
 <h2 class="page-header">Комментарии</h2>
 <div class="post-block">
     <?php

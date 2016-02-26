@@ -15,7 +15,9 @@ $this->params['jumbotron'] = $this->render('_jumbotron');
 <div class="site-index">
     <div class="body-content">
         <?php
-            Pjax::begin();
+            Pjax::begin([
+                'timeout' => 50000,
+            ]);
 
             echo ListView::widget([
                 'dataProvider' => $news_data_provider,

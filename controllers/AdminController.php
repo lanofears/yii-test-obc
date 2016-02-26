@@ -12,6 +12,7 @@ use app\models\NewsSearch;
 use app\models\Posts;
 use app\models\PostsSearch;
 use yii\filters\AccessControl;
+use yii\helpers\BaseStringHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -199,7 +200,7 @@ class AdminController extends Controller {
         ], 'visitor', [
             'attribute'     => 'text',
             'value'         => function($data) {
-                                   return TextHelper::cut_text($data->text, 200);
+                                   return BaseStringHelper::truncate($data->text, 200, '...', 'UTF-8');
                                }
         ], [
             'attribute'     => 'created_at',

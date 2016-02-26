@@ -25,7 +25,9 @@ $this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs(
     </h5>
 </div>
 <?php
-Pjax::begin();
+Pjax::begin([
+    'timeout' => 50000,
+]);
 
 echo ListView::widget([
     'dataProvider' => $data_provider,
