@@ -13,12 +13,12 @@ class TextHelper {
     ];
 
     public static function transliterate($text, $delimiter = '_') {
-        $text = mb_strtolower($text);
-        $pattern = array_map(function($pattern) { return '/'.$pattern.'/u'; }, array_keys(self::$translate_matrix));
+        $pattern = array_map(function($pattern) { return '/'.$pattern.'/iu'; }, array_keys(self::$translate_matrix));
 
         $text = preg_replace($pattern, array_values(self::$translate_matrix), $text);
-        $text = preg_replace("/[^a-z0-9\/_|+ -]/u", '', $text);
-        $text = preg_replace("/[\/_|+ -]+/u", $delimiter, $text);
+        $text = preg_replace("/[^a-z0-9\/_|+ -]/iu", '', $text);
+        $text = preg_replace("/[\/_|+ -]+/iu", $delimiter, $text);
+        $text = strtolower($text);
 
         return $text;
     }
