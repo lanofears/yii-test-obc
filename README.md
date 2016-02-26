@@ -51,6 +51,7 @@ git clone https://github.com/lanofears/yii-test-obc.git $project_folder$
 Устанавливаем с помощью composer зависимости
 
 ~~~
+composer global require "fxp/composer-asset-plugin:~1.1.1"
 composer install
 ~~~
 
