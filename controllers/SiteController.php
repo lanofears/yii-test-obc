@@ -32,7 +32,10 @@ class SiteController extends Controller {
                 'defaultOrder'  => [ 'created_at' => SORT_DESC ],
                 'attributes'    => [ 'asc' => 'created_at' ]
             ],
-            'pagination'    => [ 'pageSize' => 3 ]
+            'pagination'    => [
+                'pageSize'          => 3,
+                'defaultPageSize'   => 3
+            ]
         ]);
 
         return $this->render('index', [ 'news_data_provider' => $data_provider ]);
@@ -51,7 +54,10 @@ class SiteController extends Controller {
         $posts_provider = new ActiveDataProvider([
             'query'         => $news->getPosts(),
             'sort'          => [ 'defaultOrder' => [ 'created_at' => SORT_DESC ]],
-            'pagination'    => [ 'pageSize' => 15 ]
+            'pagination'    => [
+                'pageSize'          => 15,
+                'defaultPageSize'   => 15
+            ]
         ]);
 
         /** @var Posts $post */
@@ -79,7 +85,10 @@ class SiteController extends Controller {
                 'defaultOrder'  => [ 'created_at' => SORT_DESC ],
                 'attributes'    => [ 'asc' => 'created_at' ]
             ],
-            'pagination'    => [ 'pageSize' => 5 ]
+            'pagination'    => [
+                'pageSize'          => 5,
+                'defaultPageSize'   => 5
+            ]
         ]);
 
         return $this->render('category', [ 'category' => $category, 'data_provider' => $data_provider ]);
