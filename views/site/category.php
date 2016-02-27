@@ -36,7 +36,7 @@ echo ListView::widget([
         'class' => 'list-wrapper',
     ],
     'layout' => "{sorter}\n{items}\n{pager}",
-    'itemView' => function ($model, $key, $index, $widget) {
+    'itemView' => function ($model) {
         return $this->render('_news_item',[ 'model' => $model ]);
     },
     'itemOptions' => [

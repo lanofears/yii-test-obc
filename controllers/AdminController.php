@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\components\html\DropDownHelper;
-use app\components\text\TextHelper;
 use app\models\Categories;
 use app\models\CategoriesSearch;
 use app\models\LoginForm;
@@ -110,7 +109,7 @@ class AdminController extends Controller {
         ], [
             'class'         => 'yii\grid\ActionColumn',
             'template'      => '{update} {delete}',
-            'urlCreator'    => function ($action, $model, $key, $index) {
+            'urlCreator'    => function ($action, $model) {
                                     return '/admin/news/'.$action.'/'.$model->id;
                                }
         ]];
@@ -208,7 +207,7 @@ class AdminController extends Controller {
         ], [
             'class'         => 'yii\grid\ActionColumn',
             'template'      => '{delete}',
-            'urlCreator'    => function ($action, $model, $key, $index) {
+            'urlCreator'    => function ($action, $model) {
                                    return '/admin/posts/'.$action.'/'.$model->id;
                                }
         ]];
@@ -261,7 +260,7 @@ class AdminController extends Controller {
             ], [
                 'class'         => 'yii\grid\ActionColumn',
                 'template'      => '{update} {delete}',
-                'urlCreator'    => function ($action, $model, $key, $index) {
+                'urlCreator'    => function ($action, $model) {
                                        return '/admin/categories/'.$action.'/'.$model->id;
                                    }
             ]

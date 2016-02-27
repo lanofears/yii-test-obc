@@ -38,7 +38,7 @@ class News extends ActiveRecord {
             'attributes' => [
                 ActiveRecord::EVENT_BEFORE_VALIDATE => 'trans_title',
             ],
-            'value' => function($event) {
+            'value' => function() {
                 return TextHelper::transliterate($this->title);
             }
         ]];
@@ -89,6 +89,7 @@ class News extends ActiveRecord {
     public function attributeLabels() {
         return [
             'id'            => 'ИД',
+            'category'      => 'Категория',
             'category_id'   => 'Категория',
             'title'         => 'Заголовок',
             'trans_title'   => 'Заголовок',

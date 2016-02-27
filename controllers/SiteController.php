@@ -59,8 +59,9 @@ class SiteController extends Controller {
         if ($post->load(Yii::$app->request->post()) && $post->save()) {
             $post = $news->getNewPost();
         }
+        $errors = $post->errors;
 
-        return $this->render('news', [ 'news_entry' => $news, 'posts_provider' => $posts_provider, 'post' => $post ]);
+        return $this->render('news', [ 'news_entry' => $news, 'posts_provider' => $posts_provider, 'post' => $post, 'errors' => $errors ]);
     }
 
     public function actionCategory($name) {

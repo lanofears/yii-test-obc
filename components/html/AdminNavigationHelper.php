@@ -19,7 +19,7 @@ class AdminNavigationHelper {
             ]
         ],
         'admin/categories' => [
-            'title' => 'Разедалы новостей', 'url' => '/admin/categories',
+            'title' => 'Разделы новостей', 'url' => '/admin/categories',
             'sub_actions' => [
                  'admin/categories-update'    => [ 'title' => 'Редактирование раздела' ],
                  'admin/categories-add'       => [ 'title' => 'Добавление раздела' ],

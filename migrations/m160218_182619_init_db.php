@@ -12,8 +12,8 @@ class m160218_182619_init_db extends Migration {
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime()
         ]);
-        $this->createIndex('idx_categories_parent_id', 'categories', 'parent_id');
         $this->createIndex('idx_categories_trans_name', 'categories', 'trans_name', true);
+        $this->addForeignKey('fk_categories_parent', 'categories', 'parent_id', 'categories', 'id', 'CASCADE', 'CASCADE');
 
         $this->createTable('news', [
             'id' => $this->primaryKey(),

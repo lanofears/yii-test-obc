@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
 
 /* @var News $news_entry */
 /* @var Posts $post */
+/* @var array $errors */
 /* @var ActiveDataProvider $posts_provider */
 
 $this->title = Yii::$app->params['brandName'].' | '.$news_entry->title;
@@ -44,7 +45,7 @@ Pjax::begin([
             'class' => 'list-wrapper',
         ],
         'layout' => "{pager}\n{items}",
-        'itemView' => function ($model, $key, $index, $widget) {
+        'itemView' => function ($model) {
             return $this->render('_post_item',[ 'model' => $model ]);
         },
         'itemOptions' => [
@@ -59,6 +60,7 @@ Pjax::begin([
         ],
     ]); ?>
 </div>
+<?php echo $this->render('_error_block', [ 'errors' => $errors ]) ?>
 <div class="site-form">
     <?php $form = ActiveForm::begin([
         'id' => 'post-form',

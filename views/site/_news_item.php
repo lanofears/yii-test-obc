@@ -1,6 +1,5 @@
 <?php
 use app\components\html\LinkHelper;
-use app\components\text\TextHelper;
 use app\models\News;
 use yii\helpers\Html;
 

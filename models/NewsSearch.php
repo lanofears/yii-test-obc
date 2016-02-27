@@ -35,12 +35,12 @@ class NewsSearch extends News {
         $query = News::find()->joinWith('category');
         $data_provider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> [ 'defaultOrder' => [ 'created_at' => SORT_DESC ]]
+            'sort'  => [ 'defaultOrder' => [ 'created_at' => SORT_DESC ]]
         ]);
 
         $data_provider->sort->attributes['category'] = [
-            'asc' => ['category.name' => SORT_ASC],
-            'desc' => ['category.name' => SORT_DESC]
+            'asc'   => ['categories.name' => SORT_ASC],
+            'desc'  => ['categories.name' => SORT_DESC]
         ];
 
         if (!($this->load($params) && $this->validate())) {

@@ -32,7 +32,7 @@ class Categories extends ActiveRecord {
                 [
                     'class'         => AttributeBehavior::className(),
                     'attributes'    => [ ActiveRecord::EVENT_BEFORE_VALIDATE => 'trans_name', ],
-                    'value'         => function($event) {
+                    'value'         => function() {
                                            return TextHelper::transliterate($this->name);
                                        }
                 ]];
