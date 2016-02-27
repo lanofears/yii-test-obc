@@ -49,9 +49,9 @@ $config = [
             ],
         ],
         'formatter' => [
-            'dateFormat' => 'd.m.Y',
-            'datetimeFormat' => 'd.m.Y H:i:s',
-            'timeFormat' => 'H:i:s',
+            'dateFormat' => 'php:d.m.Y',
+            'datetimeFormat' => 'php:d.m.Y H:i:s',
+            'timeFormat' => 'php:H:i:s',
             'locale' => 'ru_RU',
         ],
     ],
