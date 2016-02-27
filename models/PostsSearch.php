@@ -6,6 +6,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 class PostsSearch extends Posts {
+    /** @var News[] */
     public $news;
 
     /**

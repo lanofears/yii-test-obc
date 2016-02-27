@@ -5,12 +5,19 @@ namespace app\models;
 use yii\base\Object;
 use yii\web\IdentityInterface;
 
-class User extends Object implements IdentityInterface
-{
+/**
+ * Модель пользователя
+ */
+class User extends Object implements IdentityInterface {
+    /** @var int */
     public $id;
+    /** @var string */
     public $username;
+    /** @var string */
     public $password;
+    /** @var string */
     public $authKey;
+    /** @var string */
     public $accessToken;
 
     /**

@@ -11,7 +11,15 @@ use yii\db\Expression;
 
 /**
  * Модель новостных статей
- * @package app\models
+ * @property int $id
+ * @property int $category_id
+ * @property Categories $category
+ * @property string $title
+ * @property string $trans_title
+ * @property string $preview
+ * @property string $text
+ * @property string $created_at
+ * @property string $updated_at
  */
 class News extends ActiveRecord {
     /**

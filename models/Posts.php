@@ -9,7 +9,12 @@ use yii\db\Expression;
 
 /**
  * Класс модели комментария к статье
- * @package app\models
+ *
+ * @property int $id
+ * @property int $news_id
+ * @property string $visitor
+ * @property string $text
+ * @property string $created_at
  */
 class Posts extends ActiveRecord {
     /** @var string */

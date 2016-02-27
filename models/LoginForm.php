@@ -9,8 +9,11 @@ use yii\base\Model;
  * Модель для формы Аутентификации
  */
 class LoginForm extends Model {
+    /** @var string */
     public $username;
+    /** @var string */
     public $password;
+    /** @var bool */
     public $rememberMe = true;
 
     private $_user = false;

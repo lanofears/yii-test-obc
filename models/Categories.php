@@ -10,10 +10,23 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 
 /**
- * Модель рновостных разделов
- * @package app\models
+ * Модель новостных разделов
+ *
+ * @property int id
+ * @property int parent_id
+ * @property Categories parent
+ * @property string name
+ * @property string trans_name
+ * @property string created_at
+ * @property string updated_at
+ * @property News[] news
+ * @property Categories[] $children
  */
 class Categories extends ActiveRecord {
+    /**
+     * Наименование связанной с моделью таблицы
+     * @return string
+     */
     public static function tableName() {
         return 'categories';
     }

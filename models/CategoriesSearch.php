@@ -10,8 +10,6 @@ use yii\data\ActiveDataProvider;
  * @package app\models
  */
 class CategoriesSearch extends Categories {
-    public $parent;
-
     /**
      * Настройка правил фильтрации
      * @return array

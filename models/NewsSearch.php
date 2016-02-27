@@ -7,11 +7,8 @@ use yii\data\ActiveDataProvider;
 
 /**
  * Служебная модель для настроек сортировки и фильтрации при отображении разделв в GridView
- * @package app\models
  */
 class NewsSearch extends News {
-    public $category;
-
     /**
      * Настройка правил фильтрации
      * @return array
