@@ -3,6 +3,7 @@
 namespace app\components\html;
 
 use app\models\Categories;
+use app\models\CategoriesNavigation;
 use yii\helpers\Html;
 use Yii;
 
@@ -11,9 +12,9 @@ use Yii;
  * @package app\components\html
  */
 class SiteNavigationHelper {
-    /** @var Categories[] */
+    /** @var CategoriesNavigation[] categories */
     private $categories = [];
-    /** @var Categories[][] */
+    /** @var CategoriesNavigation[][] */
     private $categories_by_parent = [];
 
     /** @var SiteNavigationHelper */
@@ -32,20 +33,23 @@ class SiteNavigationHelper {
     }
 
     private function __construct() {
-        $categories = Categories::find()
-            ->innerJoinWith('news', false)
-            ->all();
+        /** @var CategoriesNavigation[] categories */
+        $this->categories = CategoriesNavigation::find()->all();
 
-        foreach ($categories as $category) {
-            $parent_index = is_null($category->parent_id) ? 0 : $category->parent_id;
-            $this->categories[$category->id] = $category;
-            $this->categories_by_parent[$parent_index][$category->id] = $category;
+        foreach ($this->categories as $category) {
+            if (!$category->has_news) {
+                continue;
+            }
+
+            $parent = $this->_get_active_parent($category);
+            $parent_index = $parent ? $parent->id : 0;
+            $this->categories_by_parent[$parent_index][$category["id"]] = $category;
         }
     }
 
     /**
      * Получение всех загруженных категорий, на основе которых строится навигация сайта
-     * @return Categories[]
+     * @return array
      */
     public function getCategories() {
         return $this->categories;
@@ -53,7 +57,7 @@ class SiteNavigationHelper {
 
     /**
      * Получение всех загруженных категорий, сгруппированных по родительской категории
-     * @return Categories[][]
+     * @return array
      */
     public function getCategoriesByParent() {
         return $this->categories_by_parent;
@@ -69,25 +73,46 @@ class SiteNavigationHelper {
     }
 
     /**
+     * @param Categories $category
+     * @return CategoriesNavigation|null
+     */
+    private function _get_active_parent($category) {
+        if (!$category || !$category->parent_id || !isset($this->categories[$category->parent_id])) {
+            return null;
+        }
+
+        $parent_category = $this->categories[$category->parent_id];
+        if ($parent_category->has_news) {
+            return $parent_category;
+        }
+
+        return $this->_get_active_parent($parent_category);
+    }
+
+    /**
      * Генерация Breadcrumbs на основе полученной модели
      * В качесвте входного параметра можно передать Category, или News
      * Если передан параметр другого типа - возвращается пустой массив
      * @param Categories $category
-     * @param string[] $default
      * @return array
      */
-    public function generateBreadcrumbs($category = null, $default = []) {
-        $breadcrumbs = is_array($default) ? $default : [];
+    public function generateBreadcrumbs($category = null) {
+        $breadcrumbs = [];
         if (!$category) {
             return $breadcrumbs;
         }
 
         while ($category) {
-            array_unshift($breadcrumbs, [
-                'label' => Html::encode($category->name),
-                'url' => $this->_gen_category_url($category)
-            ]);
-            $category = isset($this->categories[$category->parent_id]) ? $this->categories[$category->parent_id] : null;
+            if (!$breadcrumbs) {
+                $breadcrumbs[] = $category->name;
+            }
+            else {
+                array_unshift($breadcrumbs, [
+                    'label' => Html::encode($category->name),
+                    'url'   => $this->_gen_category_url($category)
+                ]);
+            }
+            $category = $this->_get_active_parent($category);
         }
 
         return $breadcrumbs;
@@ -137,7 +162,7 @@ class SiteNavigationHelper {
      */
     private function _find_main_category($category) {
         while ($category && $category->parent_id) {
-            $category = isset($this->categories[$category->parent_id]) ? $this->categories[$category->parent_id] : null;
+            $category = $this->_get_active_parent($category);
         }
 
         return $category;

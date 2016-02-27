@@ -18,7 +18,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::$app->params['brandName'].' | '.$news_entry->title;
 $this->params['category'] = $news_entry->category;
-$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($news_entry->category, [ $news_entry->title ]);
+$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($news_entry, [ $news_entry->title ]);
 
 ?>
 
