@@ -66,13 +66,15 @@ class SiteController extends Controller {
 
     public function actionCategory($name) {
         /** @var Categories $category */
-        $category = Categories::find()->where([ 'trans_name' => $name ])->one();
+        $category = Categories::find()
+            ->innerJoinWith('news', false)
+            ->where([ 'trans_name' => $name ])->one();
         if (!$category) {
             throw new NotFoundHttpException('Запрашиваемый вами раздел отсутствует на сайте');
         }
 
         $data_provider = new ActiveDataProvider([
-            'query'         => $category->getNews()->where([ 'is_active' => 1 ]),
+            'query'         => $category->getNews(),
             'sort'          => [
                 'defaultOrder'  => [ 'created_at' => SORT_DESC ],
                 'attributes'    => [ 'asc' => 'created_at' ]

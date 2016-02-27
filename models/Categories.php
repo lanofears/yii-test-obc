@@ -94,7 +94,8 @@ class Categories extends ActiveRecord {
      * @return ActiveQuery
      */
     public function getNews() {
-        return $this->hasMany(News::class, [ 'category_id' => 'id' ]);
+        return $this->hasMany(News::class, [ 'category_id' => 'id' ])
+            ->andOnCondition([ 'is_active' => 1 ]);
     }
 
     /**

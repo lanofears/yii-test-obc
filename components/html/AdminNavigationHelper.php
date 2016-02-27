@@ -135,6 +135,10 @@ class AdminNavigationHelper {
         return $breadcrumbs;
     }
 
+    public function getActionName($action) {
+        return isset($this->_actions_by_id[$action]['title']) ? $this->_actions_by_id[$action]['title'] : '';
+    }
+
     /**
      * Получение заголовка странице на основании идентификатора действия
      * @param string $action

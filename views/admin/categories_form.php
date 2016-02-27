@@ -17,7 +17,7 @@ $this->params['action'] = $action;
 $this->params['breadcrumbs'] = AdminNavigationHelper::get()->generateBreadcrumbs($action);
 ?>
 
-<h1 class="page-header"><?= $this->title ?></h1>
+<h1 class="page-header"><?= AdminNavigationHelper::get()->getActionName($action) ?></h1>
 <?php echo $this->render('_error_block', [ 'errors' => $errors ]) ?>
 <div class="site-form">
     <?php $form = ActiveForm::begin([
