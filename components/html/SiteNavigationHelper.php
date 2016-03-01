@@ -34,7 +34,7 @@ class SiteNavigationHelper {
 
     private function __construct() {
         /** @var CategoriesNavigation[] categories */
-        $this->categories = CategoriesNavigation::find()->all();
+        $this->categories = CategoriesNavigation::find()->orderBy([ 'name' => SORT_ASC ])->all();
 
         foreach ($this->categories as $category) {
             if (!$category->has_news) {
@@ -61,6 +61,18 @@ class SiteNavigationHelper {
      */
     public function getCategoriesByParent() {
         return $this->categories_by_parent;
+    }
+
+    /**
+     * Получение всех загруженных категорий, сгруппированных по родительской категории
+     * @param Categories $category
+     * @return Categories[]
+     */
+    public function getChildCategories($category) {
+        if (!$category || !isset($this->categories_by_parent[$category->id])) {
+            return [];
+        }
+        return $this->categories_by_parent[$category->id];
     }
 
     /**

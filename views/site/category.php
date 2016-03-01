@@ -13,13 +13,14 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::$app->params['brandName'].' | '.$category->name;
 $this->params['category'] = $category;
-$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($category, [ $category->name ]);
+$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($category);
+$child_categories = SiteNavigationHelper::get()->getChildCategories($category);
 
 ?>
 <div>
     <h1 class="category-name"><span style="font-size: 75%;"><?= BtHtml::icon('menu-right') ?></span><?= $category->name ?></h1>
     <h5>
-    <?php foreach ($category->children as $sub_category): ?>
+    <?php foreach ($child_categories as $sub_category): ?>
         <?= LinkHelper::category_link($sub_category, [ 'class' => 'btn btn-link' ]) ?>
     <?php endforeach; ?>
     </h5>
