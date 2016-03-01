@@ -52,7 +52,7 @@ class Posts extends ActiveRecord {
         return [
             [[ 'visitor', 'text', 'news_id' ], 'required' ],
             [[ 'visitor' ], 'string', 'max' => 30 ],
-            [ 'verification_code', 'captcha', 'captchaAction' => '/site/captcha' ],
+            [ 'verification_code', 'captcha', 'captchaAction' => 'site/captcha' ],
         ];
     }
 

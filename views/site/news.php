@@ -7,7 +7,7 @@ use app\models\Posts;
 use yii\captcha\Captcha;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
@@ -18,7 +18,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::$app->params['brandName'].' | '.$news_entry->title;
 $this->params['category'] = $news_entry->category;
-$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($news_entry, [ $news_entry->title ]);
+$this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs($news_entry->category);
 
 ?>
 
@@ -30,10 +30,9 @@ $this->params['breadcrumbs'] = SiteNavigationHelper::get()->generateBreadcrumbs(
 <div class="lead news-text">
     <?= TextHelper::format_article(Html::encode($news_entry->text)) ?>
 </div>
-<?php
-Pjax::begin([
-    'timeout' => 50000,
-]);
+<?php Pjax::begin([
+        'timeout' => 50000,
+    ]);
 ?>
 <h2 class="page-header">Комментарии</h2>
 <div class="post-block">
@@ -73,7 +72,7 @@ Pjax::begin([
     <div class="row">
         <?= $form->field($post, 'visitor', [ 'options' => [ 'class' => 'col-lg-3' ]])->textInput(); ?>
         <?= $form->field($post, 'verification_code', [ 'options' => [ 'class' => 'col-lg-7' ]])->widget(Captcha::class, [
-            'captchaAction' => '/site/captcha',
+            'captchaAction' => 'site/captcha',
             'template' => '<div class="row"><div class="col-lg-3">{input}</div><div class="col-lg-3 no-padding">{image}</div></div>'
         ]); ?>
     </div>
